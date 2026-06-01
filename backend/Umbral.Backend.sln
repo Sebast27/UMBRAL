@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbral.Domain", "Umbral.Domain\Umbral.Domain.csproj", "{5ACD1BE6-897B-417F-94CB-E2CD7FD5A779}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CDB1038F-0E91-4A19-9AB2-6FA4AFD151E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbral.Domain.Tests", "tests\Umbral.Domain.Tests\Umbral.Domain.Tests.csproj", "{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,12 @@ Global
 		{5ACD1BE6-897B-417F-94CB-E2CD7FD5A779}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ACD1BE6-897B-417F-94CB-E2CD7FD5A779}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ACD1BE6-897B-417F-94CB-E2CD7FD5A779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D} = {CDB1038F-0E91-4A19-9AB2-6FA4AFD151E7}
 	EndGlobalSection
 EndGlobal
