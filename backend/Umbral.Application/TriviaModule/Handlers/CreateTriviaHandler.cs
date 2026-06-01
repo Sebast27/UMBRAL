@@ -1,9 +1,10 @@
 using MediatR;
-using Umbral.Application.Trivias.Commands;
+using Umbral.Application.TriviaModule.Commands;
 using Umbral.Domain.Entities;
+using Umbral.Domain.Exceptions;
 using Umbral.Domain.Repositories;
 
-namespace Umbral.Application.Trivias.Handlers;
+namespace Umbral.Application.TriviaModule.Handlers;
 
 public class CreateTriviaCommandHandler : IRequestHandler<CreateTriviaCommand, Guid>
 {
@@ -18,7 +19,7 @@ public class CreateTriviaCommandHandler : IRequestHandler<CreateTriviaCommand, G
     {
         var exists = await _triviaRepository.ExistsByNameAsync(request.Name, cancellationToken);
         if (exists)
-            throw new Domain.Exceptions.DomainException("Ya existe una trivia con ese nombre");
+            throw new DomainException("Ya existe una trivia con ese nombre");
 
         var trivia = new Trivia(request.Name, request.Description, request.CreatedBy);
         await _triviaRepository.AddAsync(trivia, cancellationToken);
