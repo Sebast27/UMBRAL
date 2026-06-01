@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CDB1038F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbral.Domain.Tests", "tests\Umbral.Domain.Tests\Umbral.Domain.Tests.csproj", "{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbral.Application", "Umbral.Application\Umbral.Application.csproj", "{BDA65AAE-4E60-4F4D-93D0-C51936D097D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA65AAE-4E60-4F4D-93D0-C51936D097D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA65AAE-4E60-4F4D-93D0-C51936D097D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA65AAE-4E60-4F4D-93D0-C51936D097D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA65AAE-4E60-4F4D-93D0-C51936D097D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D} = {CDB1038F-0E91-4A19-9AB2-6FA4AFD151E7}
