@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbral.Application", "Umbra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbral.Infrastructure", "Umbral.Infrastructure\Umbral.Infrastructure.csproj", "{F23868E2-F2C6-49DD-BEAE-26B8652F4981}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Umbral.Adapters.API", "Umbral.Adapters.API\Umbral.Adapters.API.csproj", "{0E0BB9E7-25D1-4B79-AAFB-D3D265F1A088}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{F23868E2-F2C6-49DD-BEAE-26B8652F4981}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F23868E2-F2C6-49DD-BEAE-26B8652F4981}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F23868E2-F2C6-49DD-BEAE-26B8652F4981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0BB9E7-25D1-4B79-AAFB-D3D265F1A088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E0BB9E7-25D1-4B79-AAFB-D3D265F1A088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0BB9E7-25D1-4B79-AAFB-D3D265F1A088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0BB9E7-25D1-4B79-AAFB-D3D265F1A088}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F6CC3CDA-87A5-4519-AABD-94F1CAC18F7D} = {CDB1038F-0E91-4A19-9AB2-6FA4AFD151E7}
