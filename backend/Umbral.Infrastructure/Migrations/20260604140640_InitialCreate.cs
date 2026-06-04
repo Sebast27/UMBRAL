@@ -12,6 +12,25 @@ namespace Umbral.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Sessions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    TriviaId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Code = table.Column<string>(type: "text", nullable: false),
+                    TimePerQuestion = table.Column<int>(type: "integer", nullable: false),
+                    IsPublic = table.Column<bool>(type: "boolean", nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    StartedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    FinishedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sessions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Trivias",
                 columns: table => new
                 {
@@ -25,6 +44,28 @@ namespace Umbral.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Trivias", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Participants",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Type = table.Column<int>(type: "integer", nullable: false),
+                    TeamId = table.Column<Guid>(type: "uuid", nullable: true),
+                    JoinedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    SessionId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Participants", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Participants_Sessions_SessionId",
+                        column: x => x.SessionId,
+                        principalTable: "Sessions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,6 +91,11 @@ namespace Umbral.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Participants_SessionId",
+                table: "Participants",
+                column: "SessionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Questions_TriviaId",
                 table: "Questions",
                 column: "TriviaId");
@@ -59,7 +105,13 @@ namespace Umbral.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Participants");
+
+            migrationBuilder.DropTable(
                 name: "Questions");
+
+            migrationBuilder.DropTable(
+                name: "Sessions");
 
             migrationBuilder.DropTable(
                 name: "Trivias");

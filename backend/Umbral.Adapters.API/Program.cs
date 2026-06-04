@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Umbral.Adapters.API.Hubs; 
 using Umbral.Adapters.API.Middleware;
 using Umbral.Application.TriviaModule.Handlers;
+using Umbral.Application.Common.Interfaces;
 using Umbral.Domain.TriviaModule.Repositories;
 using Umbral.Domain.Common.Interfaces;
 using Umbral.Infrastructure.Persistence;
@@ -28,6 +29,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Add Repositories
 builder.Services.AddScoped<ITriviaRepository, TriviaRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ISessionRepository, SessionRepository>();
+builder.Services.AddScoped<IParticipantRepository, ParticipantRepository>();
 
 // Add CORS
 builder.Services.AddCors(options =>
