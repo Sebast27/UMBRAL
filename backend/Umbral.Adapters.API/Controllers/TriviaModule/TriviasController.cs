@@ -69,4 +69,23 @@ public class TriviasController : ControllerBase
         var result = await _mediator.Send(new ListTriviasQuery(page, pageSize, search));
         return Ok(result);
     }
+
+    [HttpPut("{id}/questions/{questionId}")]
+    public async Task<IActionResult> UpdateQuestion(Guid id, Guid questionId, [FromBody] UpdateQuestionCommand command)
+    {
+        if (id != command.TriviaId)
+            return BadRequest("El ID de la trivia no coincide");
+        if (questionId != command.QuestionId)
+            return BadRequest("El ID de la pregunta no coincide");
+
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpDelete("{id}/questions/{questionId}")]
+    public async Task<IActionResult> DeleteQuestion(Guid id, Guid questionId)
+    {
+        await _mediator.Send(new DeleteQuestionCommand(id, questionId));
+        return NoContent();
+    }
 }
