@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Umbral.Infrastructure.Persistence;
@@ -11,9 +12,11 @@ using Umbral.Infrastructure.Persistence;
 namespace Umbral.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260604194942_AddGameRoundTables")]
+    partial class AddGameRoundTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,9 +25,6 @@ namespace Umbral.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-<<<<<<< Updated upstream
-            modelBuilder.Entity("Umbral.Domain.Entities.Question", b =>
-=======
             modelBuilder.Entity("Umbral.Domain.TriviaModule.Entities.Answer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -113,7 +113,6 @@ namespace Umbral.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Umbral.Domain.TriviaModule.Entities.Question", b =>
->>>>>>> Stashed changes
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -141,7 +140,43 @@ namespace Umbral.Infrastructure.Migrations
                     b.ToTable("Questions", (string)null);
                 });
 
-            modelBuilder.Entity("Umbral.Domain.Entities.Trivia", b =>
+            modelBuilder.Entity("Umbral.Domain.TriviaModule.Entities.Session", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("FinishedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsPublic")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("StartedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TimePerQuestion")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("TriviaId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sessions", (string)null);
+                });
+
+            modelBuilder.Entity("Umbral.Domain.TriviaModule.Entities.Trivia", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -172,9 +207,6 @@ namespace Umbral.Infrastructure.Migrations
                     b.ToTable("Trivias", (string)null);
                 });
 
-<<<<<<< Updated upstream
-            modelBuilder.Entity("Umbral.Domain.Entities.Question", b =>
-=======
             modelBuilder.Entity("Umbral.Domain.TriviaModule.Entities.Answer", b =>
                 {
                     b.HasOne("Umbral.Domain.TriviaModule.Entities.GameRound", null)
@@ -185,15 +217,23 @@ namespace Umbral.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Umbral.Domain.TriviaModule.Entities.Participant", b =>
->>>>>>> Stashed changes
                 {
-                    b.HasOne("Umbral.Domain.Entities.Trivia", null)
+                    b.HasOne("Umbral.Domain.TriviaModule.Entities.Session", null)
+                        .WithMany("Participants")
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Umbral.Domain.TriviaModule.Entities.Question", b =>
+                {
+                    b.HasOne("Umbral.Domain.TriviaModule.Entities.Trivia", null)
                         .WithMany("Questions")
                         .HasForeignKey("TriviaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Umbral.Domain.ValueObjects.Points", "Points", b1 =>
+                    b.OwnsOne("Umbral.Domain.TriviaModule.ValueObjects.Points", "Points", b1 =>
                         {
                             b1.Property<Guid>("QuestionId")
                                 .HasColumnType("uuid");
@@ -214,9 +254,6 @@ namespace Umbral.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-<<<<<<< Updated upstream
-            modelBuilder.Entity("Umbral.Domain.Entities.Trivia", b =>
-=======
             modelBuilder.Entity("Umbral.Domain.TriviaModule.Entities.GameRound", b =>
                 {
                     b.Navigation("Answers");
@@ -228,7 +265,6 @@ namespace Umbral.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Umbral.Domain.TriviaModule.Entities.Trivia", b =>
->>>>>>> Stashed changes
                 {
                     b.Navigation("Questions");
                 });
