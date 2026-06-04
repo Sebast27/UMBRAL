@@ -12,8 +12,8 @@ using Umbral.Infrastructure.Persistence;
 namespace Umbral.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260604194942_AddGameRoundTables")]
-    partial class AddGameRoundTables
+    [Migration("20260604231940_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
