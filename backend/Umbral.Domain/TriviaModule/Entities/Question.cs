@@ -1,7 +1,7 @@
-using Umbral.Domain.Exceptions;
-using Umbral.Domain.ValueObjects;
+using Umbral.Domain.Common.Exceptions;
+using Umbral.Domain.TriviaModule.ValueObjects;
 
-namespace Umbral.Domain.Entities;
+namespace Umbral.Domain.TriviaModule.Entities;
 
 public class Question
 {
@@ -20,31 +20,9 @@ public class Question
         Points = null!;
     }
 
-    internal Question(string text, string[] options, int correctOption, Points points, Guid triviaId)
+    public Question(string text, string[] options, int correctOption, Points points, Guid triviaId)
     {
-        if (string.IsNullOrWhiteSpace(text))
-            throw new DomainException("El texto de la pregunta es obligatorio");
-
-        if (text.Length > 500)
-            throw new DomainException("El texto no puede superar los 500 caracteres");
-
-        if (options.Length != 4)
-            throw new DomainException("La pregunta debe tener exactamente 4 opciones");
-
-        for (int i = 0; i < options.Length; i++)
-        {
-            if (string.IsNullOrWhiteSpace(options[i]))
-                throw new DomainException("Todas las opciones son obligatorias");
-
-            if (options[i].Length > 200)
-                throw new DomainException("Las opciones no pueden superar los 200 caracteres");
-        }
-
-        if (options.Distinct().Count() != options.Length)
-            throw new DomainException("Las opciones deben ser únicas");
-
-        if (correctOption < 0 || correctOption > 3)
-            throw new DomainException("La opción correcta debe ser 0, 1, 2 o 3");
+        Validate(text, options, correctOption);
 
         Id = Guid.NewGuid();
         Text = text;
@@ -54,7 +32,17 @@ public class Question
         TriviaId = triviaId;
     }
 
-    internal void Update(string text, string[] options, int correctOption, Points points)
+    public void Update(string text, string[] options, int correctOption, Points points)
+    {
+        Validate(text, options, correctOption);
+
+        Text = text;
+        Options = options;
+        CorrectOption = correctOption;
+        Points = points;
+    }
+
+    private void Validate(string text, string[] options, int correctOption)
     {
         if (string.IsNullOrWhiteSpace(text))
             throw new DomainException("El texto de la pregunta es obligatorio");
@@ -79,10 +67,5 @@ public class Question
 
         if (correctOption < 0 || correctOption > 3)
             throw new DomainException("La opción correcta debe ser 0, 1, 2 o 3");
-
-        Text = text;
-        Options = options;
-        CorrectOption = correctOption;
-        Points = points;
     }
 }

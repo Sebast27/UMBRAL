@@ -1,6 +1,6 @@
-using Umbral.Domain.Entities;
+using Umbral.Domain.TriviaModule.Entities;
 
-namespace Umbral.Domain.Repositories;
+namespace Umbral.Domain.TriviaModule.Repositories;
 
 public interface ITriviaRepository
 {
@@ -11,4 +11,6 @@ public interface ITriviaRepository
     Task AddAsync(Trivia trivia, CancellationToken ct = default);
     Task UpdateAsync(Trivia trivia, CancellationToken ct = default);
     Task DeleteAsync(Trivia trivia, CancellationToken ct = default);
+    Task AddQuestionAsync(Guid triviaId, Question question, CancellationToken ct = default);
+    Task<Trivia?> GetByIdWithTrackingAsync(Guid id, CancellationToken ct = default);
 }

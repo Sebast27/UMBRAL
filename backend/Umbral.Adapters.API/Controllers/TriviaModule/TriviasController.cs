@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Umbral.Application.TriviaModule.Commands;
 using Umbral.Application.TriviaModule.Queries;
 
-namespace Umbral.Adapters.API.Controllers;
+namespace Umbral.Adapters.API.Controllers.TriviaModule;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -21,6 +21,16 @@ public class TriviasController : ControllerBase
     {
         var id = await _mediator.Send(command);
         return CreatedAtAction(nameof(GetTriviaById), new { id }, id);
+    }
+
+    [HttpPost("{id}/questions")]
+    public async Task<ActionResult<Guid>> AddQuestion(Guid id, [FromBody] AddQuestionToTriviaCommand command)
+    {
+        if (id != command.TriviaId)
+            return BadRequest("El ID de la trivia no coincide");
+
+        var questionId = await _mediator.Send(command);
+        return CreatedAtAction(nameof(GetTriviaById), new { id }, questionId);
     }
 
     [HttpPut("{id}")]
@@ -41,7 +51,7 @@ public class TriviasController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Domain.Entities.Trivia>> GetTriviaById(Guid id)
+    public async Task<ActionResult<Domain.TriviaModule.Entities.Trivia>> GetTriviaById(Guid id)
     {
         var trivia = await _mediator.Send(new GetTriviaByIdQuery(id));
         if (trivia is null)

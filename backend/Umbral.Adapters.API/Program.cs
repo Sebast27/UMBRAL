@@ -2,9 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using Umbral.Adapters.API.Hubs; 
 using Umbral.Adapters.API.Middleware;
 using Umbral.Application.TriviaModule.Handlers;
-using Umbral.Domain.Repositories;
+using Umbral.Domain.TriviaModule.Repositories;
+using Umbral.Domain.Common.Interfaces;
 using Umbral.Infrastructure.Persistence;
-using Umbral.Infrastructure.Persistence.Repositories;
+using Umbral.Infrastructure.Persistence.Repositories.TriviaModule;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

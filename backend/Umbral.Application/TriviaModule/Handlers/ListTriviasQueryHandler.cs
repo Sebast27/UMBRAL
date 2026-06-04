@@ -2,7 +2,7 @@ using MediatR;
 using Umbral.Application.Common;
 using Umbral.Application.TriviaModule.Dtos;
 using Umbral.Application.TriviaModule.Queries;
-using Umbral.Domain.Repositories;
+using Umbral.Domain.TriviaModule.Repositories;
 
 namespace Umbral.Application.TriviaModule.Handlers;
 

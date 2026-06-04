@@ -1,8 +1,9 @@
 using MediatR;
 using Umbral.Application.TriviaModule.Commands;
-using Umbral.Domain.Entities;
-using Umbral.Domain.Exceptions;
-using Umbral.Domain.Repositories;
+using Umbral.Domain.Common.Interfaces;
+using Umbral.Domain.TriviaModule.Entities;
+using Umbral.Domain.Common.Exceptions;
+using Umbral.Domain.TriviaModule.Repositories;
 
 namespace Umbral.Application.TriviaModule.Handlers;
 

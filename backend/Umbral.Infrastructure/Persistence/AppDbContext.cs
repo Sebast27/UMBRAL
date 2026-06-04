@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Umbral.Domain.Entities;
+using Umbral.Domain.TriviaModule.Entities;
 
 namespace Umbral.Infrastructure.Persistence;
 
