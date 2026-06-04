@@ -1,6 +1,6 @@
 using System.Net;
 using System.Text.Json;
-using Umbral.Domain.Exceptions;
+using Umbral.Domain.Common.Exceptions;
 
 namespace Umbral.Adapters.API.Middleware;
 

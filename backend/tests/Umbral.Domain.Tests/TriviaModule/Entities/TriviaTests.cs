@@ -1,8 +1,8 @@
-using Umbral.Domain.Entities;
-using Umbral.Domain.Exceptions;
-using Umbral.Domain.ValueObjects;
+using Umbral.Domain.TriviaModule.Entities;
+using Umbral.Domain.Common.Exceptions;
+using Umbral.Domain.TriviaModule.ValueObjects;
 
-namespace Umbral.Domain.Tests.Entities;
+namespace Umbral.Domain.Tests.TriviaModule.Entities;
 
 public class TriviaTests
 {

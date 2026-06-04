@@ -1,6 +1,6 @@
-using Umbral.Domain.Exceptions;
+using Umbral.Domain.Common.Exceptions;
 
-namespace Umbral.Domain.ValueObjects;
+namespace Umbral.Domain.TriviaModule.ValueObjects;
 
 public record Points
 {

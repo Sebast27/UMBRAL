@@ -1,4 +1,4 @@
-namespace Umbral.Domain.Exceptions;
+namespace Umbral.Domain.Common.Exceptions;
 
 public class DomainException : Exception
 {

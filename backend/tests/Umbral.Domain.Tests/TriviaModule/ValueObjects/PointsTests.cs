@@ -1,7 +1,7 @@
-using Umbral.Domain.Exceptions;
-using Umbral.Domain.ValueObjects;
+using Umbral.Domain.Common.Exceptions;
+using Umbral.Domain.TriviaModule.ValueObjects;
 
-namespace Umbral.Domain.Tests.ValueObjects;
+namespace Umbral.Domain.Tests.TriviaModule.ValueObjects;
 
 public class PointsTests
 {

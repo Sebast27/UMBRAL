@@ -1,4 +1,4 @@
-namespace Umbral.Domain.Repositories;
+namespace Umbral.Domain.Common.Interfaces;
 
 public interface IUnitOfWork
 {

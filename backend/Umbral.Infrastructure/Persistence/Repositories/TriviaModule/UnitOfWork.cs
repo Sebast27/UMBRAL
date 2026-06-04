@@ -1,6 +1,7 @@
-using Umbral.Domain.Repositories;
+using Umbral.Domain.TriviaModule.Repositories;
+using Umbral.Domain.Common.Interfaces;
 
-namespace Umbral.Infrastructure.Persistence;
+namespace Umbral.Infrastructure.Persistence.Repositories.TriviaModule;
 
 public class UnitOfWork : IUnitOfWork
 {

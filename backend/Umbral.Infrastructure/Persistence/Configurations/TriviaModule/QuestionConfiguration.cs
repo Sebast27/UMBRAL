@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Umbral.Domain.Entities;
+using Umbral.Domain.TriviaModule.Entities;
 
-namespace Umbral.Infrastructure.Persistence.Configurations;
+namespace Umbral.Infrastructure.Persistence.Configurations.TriviaModule;
 
 public class QuestionConfiguration : IEntityTypeConfiguration<Question>
 {

@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using Umbral.Domain.Entities;
-using Umbral.Domain.Repositories;
+using Umbral.Domain.TriviaModule.Entities;
+using Umbral.Domain.TriviaModule.Repositories;
+using Umbral.Domain.Common.Exceptions;
 
-namespace Umbral.Infrastructure.Persistence.Repositories;
+namespace Umbral.Infrastructure.Persistence.Repositories.TriviaModule;
 
 public class TriviaRepository : ITriviaRepository
 {
@@ -62,5 +63,21 @@ public class TriviaRepository : ITriviaRepository
     {
         _context.Trivias.Remove(trivia);
         return Task.CompletedTask;
+    }
+
+    public async Task<Trivia?> GetByIdWithTrackingAsync(Guid id, CancellationToken ct = default)
+    {
+        return await _context.Trivias
+            .Include(t => t.Questions)
+            .FirstOrDefaultAsync(t => t.Id == id && !t.IsDeleted, ct);
+    }
+
+    public async Task AddQuestionAsync(Guid triviaId, Question question, CancellationToken ct = default)
+    {
+        var trivia = await _context.Trivias.FindAsync(new object[] { triviaId }, ct);
+        if (trivia == null)
+            throw new DomainException("Trivia no encontrada");
+        
+        await _context.Questions.AddAsync(question, ct);
     }
 }

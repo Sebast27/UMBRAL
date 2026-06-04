@@ -1,6 +1,7 @@
 using MediatR;
 using Umbral.Application.TriviaModule.Commands;
-using Umbral.Domain.Repositories;
+using Umbral.Domain.TriviaModule.Repositories;
+using Umbral.Domain.Common.Exceptions;
 
 namespace Umbral.Application.TriviaModule.Handlers;
 
@@ -17,7 +18,7 @@ public class DeleteTriviaCommandHandler : IRequestHandler<DeleteTriviaCommand>
     {
         var trivia = await _triviaRepository.GetByIdAsync(request.Id, cancellationToken);
         if (trivia is null)
-            throw new Domain.Exceptions.DomainException("Trivia no encontrada");
+            throw new DomainException("Trivia no encontrada");
 
         trivia.Delete();
         await _triviaRepository.UpdateAsync(trivia, cancellationToken);
