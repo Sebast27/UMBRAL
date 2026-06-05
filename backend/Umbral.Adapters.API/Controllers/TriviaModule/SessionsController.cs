@@ -73,4 +73,14 @@ public class SessionsController : ControllerBase
         await _mediator.Send(new LeaveSessionCommand(id, participantId));
         return NoContent();
     }
+
+    [HttpPost("{id}/answer")]
+    public async Task<ActionResult<AnswerResultDto>> SubmitAnswer(Guid id, [FromBody] SubmitAnswerCommand command)
+    {
+        if (id != command.SessionId)
+            return BadRequest("El ID de la sesión no coincide");
+
+        var result = await _mediator.Send(command);
+        return Ok(result);
+    }
 }
