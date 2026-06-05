@@ -38,11 +38,11 @@ public class StartSessionCommandHandler : IRequestHandler<StartSessionCommand>
         if (trivia is null || !trivia.Questions.Any())
             throw new Domain.Common.Exceptions.DomainException("La trivia no tiene preguntas");
 
-        // Crear primera ronda con la primera pregunta
+        // Crear la primera ronda con la primera pregunta
         var firstQuestion = trivia.Questions.First();
         var firstRound = new GameRound(session.Id, firstQuestion.Id, 1);
+        
         await _roundRepository.AddAsync(firstRound, cancellationToken);
-
         await _sessionRepository.UpdateAsync(session, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
