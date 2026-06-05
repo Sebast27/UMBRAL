@@ -11,8 +11,8 @@ public class AppDbContext : DbContext
 
     public DbSet<Trivia> Trivias { get; set; }
     public DbSet<Question> Questions { get; set; }
-    public DbSet<Session> Sessions => Set<Session>();
-    public DbSet<Participant> Participants => Set<Participant>();
+    public DbSet<Session> Sessions { get; set; }
+    public DbSet<Participant> Participants { get; set; }
     public DbSet<GameRound> GameRounds { get; set; }
     public DbSet<Answer> Answers { get; set; }
 
