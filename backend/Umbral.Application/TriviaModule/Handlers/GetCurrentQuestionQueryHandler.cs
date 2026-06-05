@@ -32,8 +32,10 @@ public class GetCurrentQuestionQueryHandler : IRequestHandler<GetCurrentQuestion
             return null;
 
         var trivia = await _triviaRepository.GetByIdAsync(session.TriviaId, cancellationToken);
-        var question = trivia?.Questions.FirstOrDefault(q => q.Id == currentRound.QuestionId);
-        
+        if (trivia is null)
+            return null;
+
+        var question = trivia.Questions.FirstOrDefault(q => q.Id == currentRound.QuestionId);
         if (question is null)
             return null;
 
