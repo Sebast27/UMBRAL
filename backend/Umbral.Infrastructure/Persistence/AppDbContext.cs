@@ -13,6 +13,8 @@ public class AppDbContext : DbContext
     public DbSet<Question> Questions { get; set; }
     public DbSet<Session> Sessions => Set<Session>();
     public DbSet<Participant> Participants => Set<Participant>();
+    public DbSet<GameRound> GameRounds { get; set; }
+    public DbSet<Answer> Answers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
