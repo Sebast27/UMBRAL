@@ -7,4 +7,5 @@ public record TriviaListItemDto
     public string? Description { get; init; }
     public DateTime CreatedAt { get; init; }
     public int QuestionsCount { get; init; }
+    public List<QuestionDto> Questions { get; init; } = new();
 }

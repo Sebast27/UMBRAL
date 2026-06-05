@@ -26,7 +26,15 @@ public class ListTriviasQueryHandler : IRequestHandler<ListTriviasQuery, Paginat
             Name = t.Name,
             Description = t.Description,
             CreatedAt = t.CreatedAt,
-            QuestionsCount = t.Questions.Count
+            QuestionsCount = t.Questions.Count,
+            Questions = t.Questions.Select(q => new QuestionDto
+            {
+                Id = q.Id,
+                Text = q.Text,
+                Options = q.Options,
+                CorrectOption = q.CorrectOption,
+                Points = q.Points.Value
+            }).ToList()
         }).ToList();
 
         return new PaginatedResult<TriviaListItemDto>
