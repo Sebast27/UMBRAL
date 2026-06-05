@@ -64,6 +64,7 @@ public class SubmitAnswerCommandHandler : IRequestHandler<SubmitAnswerCommand, A
         var points = isCorrect && question != null ? question.Points.Value : 0;
 
         var answer = new Answer(currentRound.Id, request.ParticipantId, request.SelectedOption, request.TimeElapsedMs);
+        
         await _roundRepository.AddAnswerAsync(answer, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
