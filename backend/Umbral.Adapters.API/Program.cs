@@ -32,6 +32,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ISessionRepository, SessionRepository>();
 builder.Services.AddScoped<IParticipantRepository, ParticipantRepository>();
 builder.Services.AddScoped<IGameRoundRepository, GameRoundRepository>();
+builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
 
 // Add CORS
 builder.Services.AddCors(options =>
