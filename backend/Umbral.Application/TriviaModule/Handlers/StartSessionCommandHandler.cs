@@ -33,8 +33,7 @@ public class StartSessionCommandHandler : IRequestHandler<StartSessionCommand>
             throw new Domain.Common.Exceptions.DomainException("Sesión no encontrada");
 
         session.Start();
-        
-        // Obtener la trivia para saber cuántas preguntas tiene
+
         var trivia = await _triviaRepository.GetByIdAsync(session.TriviaId, cancellationToken);
         if (trivia is null || !trivia.Questions.Any())
             throw new Domain.Common.Exceptions.DomainException("La trivia no tiene preguntas");

@@ -4,7 +4,6 @@ using Umbral.Domain.Common.Interfaces;
 using Umbral.Domain.TriviaModule.Entities;
 using Umbral.Domain.TriviaModule.Repositories;
 using Umbral.Domain.TriviaModule.ValueObjects;
-using Umbral.Application.Common.Interfaces;
 
 namespace Umbral.Application.TriviaModule.Handlers;
 
@@ -13,20 +12,17 @@ public class SubmitAnswerCommandHandler : IRequestHandler<SubmitAnswerCommand, A
     private readonly ISessionRepository _sessionRepository;
     private readonly IGameRoundRepository _roundRepository;
     private readonly ITriviaRepository _triviaRepository;
-    private readonly IAnswerRepository _answerRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     public SubmitAnswerCommandHandler(
         ISessionRepository sessionRepository,
         IGameRoundRepository roundRepository,
         ITriviaRepository triviaRepository,
-        IAnswerRepository answerRepository,
         IUnitOfWork unitOfWork)
     {
         _sessionRepository = sessionRepository;
         _roundRepository = roundRepository;
         _triviaRepository = triviaRepository;
-        _answerRepository = answerRepository;
         _unitOfWork = unitOfWork;
     }
 
@@ -65,11 +61,10 @@ public class SubmitAnswerCommandHandler : IRequestHandler<SubmitAnswerCommand, A
         var question = trivia?.Questions.FirstOrDefault(q => q.Id == currentRound.QuestionId);
         
         var isCorrect = question != null && question.CorrectOption == request.SelectedOption;
-        var points = isCorrect ? question!.Points.Value : 0;
+        var points = isCorrect && question != null ? question.Points.Value : 0;
 
         var answer = new Answer(currentRound.Id, request.ParticipantId, request.SelectedOption, request.TimeElapsedMs);
         
-        // Usar el repositorio para agregar la respuesta
         await _roundRepository.AddAnswerAsync(answer, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
