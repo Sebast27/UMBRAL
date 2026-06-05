@@ -1,0 +1,150 @@
+/* --- Contenedor Principal Estilo Premium --- */
+.container {
+  min-height: 100vh;
+  background-color: #020617; /* slate-950 */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* --- Tarjeta Estilo Cristal / Slate --- */
+.card {
+  background: rgba(15, 23, 42, 0.6); /* slate-900 con opacidad */
+  border: 1px solid #1e293b;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 28rem; /* max-w-md */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* --- Títulos y Textos --- */
+.title {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+  background: linear-gradient(90deg, #ffffff 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: #94a3b8; /* slate-400 */
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* --- Formulario y Controles --- */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #cbd5e1; /* slate-300 */
+}
+
+/* Inputs y Selects Estilo Oscuro */
+.card input[type="number"],
+.card select {
+  background: rgba(2, 6, 23, 0.7); /* slate-950 transparente */
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  width: 100%;
+  outline: none;
+}
+
+/* Estilo para las opciones del selector en navegadores */
+.card select option {
+  background-color: #0f172a; /* slate-900 */
+  color: #ffffff;
+}
+
+.card input[type="number"]:focus,
+.card select:focus {
+  border-color: #6366f1; /* indigo-500 */
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+  background: rgba(2, 6, 23, 0.9);
+}
+
+/* --- Interruptor / Checkbox Personalizado --- */
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(30, 41, 59, 0.3);
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #1e293b;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease;
+}
+
+.checkboxGroup:hover {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: #334155;
+}
+
+.checkbox {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: #6366f1; /* Color índigo al marcarlo */
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  user-select: none;
+}
+
+/* --- Botón de Submit Premium --- */
+.btnSubmit {
+  background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btnSubmit:hover:not(:disabled) {
+  filter: brightness(1.1);
+  box-shadow: 0 10px 20px -3px rgba(99, 102, 241, 0.5);
+}
+
+.btnSubmit:disabled {
+  background: #1e293b;
+  color: #64748b;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
