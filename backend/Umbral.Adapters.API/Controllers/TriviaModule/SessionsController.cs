@@ -74,6 +74,16 @@ public class SessionsController : ControllerBase
         return NoContent();
     }
 
+    [HttpGet("{id}/current-question")]
+    public async Task<ActionResult<CurrentQuestionDto>> GetCurrentQuestion(Guid id)
+    {
+        var question = await _mediator.Send(new GetCurrentQuestionQuery(id));
+        if (question is null)
+            return NotFound("No hay una pregunta activa en esta sesión");
+
+        return Ok(question);
+    }
+
     [HttpPost("{id}/answer")]
     public async Task<ActionResult<AnswerResultDto>> SubmitAnswer(Guid id, [FromBody] SubmitAnswerCommand command)
     {
